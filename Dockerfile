@@ -162,6 +162,8 @@ COPY --chown=$UID:$GID --from=build /app/package.json /app/package.json
 
 # copy backend files
 COPY --chown=$UID:$GID ./backend .
+RUN chmod +x /app/backend/start.sh
+
 
 EXPOSE 8080
 
@@ -173,4 +175,4 @@ ARG BUILD_HASH
 ENV WEBUI_BUILD_VERSION=${BUILD_HASH}
 ENV DOCKER=true
 
-CMD [ "bash","/app/backend/start.sh"]
+CMD [ "bash", "start.sh"]
